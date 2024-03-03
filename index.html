@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Webpage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="theme-switch-wrapper">
+    <label class="theme-switch" for="theme-toggle">
+        <input type="checkbox" id="theme-toggle" />
+        <div class="slider round"></div>
+    </label>
+</div>
+<div class="container">
+    <div class="left-panel">
+        <div class="item" data-item="item1">
+            <div class="item-header">Item 1</div>
+            <div class="sub-items">
+                <!-- Sub-items will be populated here -->
+            </div>
+        </div>
+        <div class="item" data-item="item2">
+            <div class="item-header">Item 2</div>
+        </div>
+        <!-- Add more items as needed -->
+    </div>
+    <div class="right-panel">
+        <div class="output"></div>
+        <div class="clear-toggle">
+            <input type="checkbox" id="auto-clear">
+            <label for="auto-clear">Auto Clear Output</label>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
