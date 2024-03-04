@@ -9,19 +9,20 @@ body {
 
 .container {
     display: flex;
-    width: 80%;
-    height: 80%;
+    width: 85%;
+    height: 85%;
 }
 
 .left-panel, .right-panel {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
+    height: 100%;
 }
 
-.item {
-    margin-bottom: 10px;
-    cursor: pointer;
+.left-panel {
+    display: flex;
+    flex-direction: column;
 }
 
 .output {
@@ -111,6 +112,7 @@ input:checked + .slider:before {
     background-color: #f9f9f9;
     cursor: pointer;
     transition: background-color 0.3s;
+    flex: 1;
 }
 
 .item:hover {
