@@ -2,15 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Webpage</title>
     <link rel="stylesheet" href="style.css">
@@ -32,11 +23,16 @@
         </div>
         <div class="item" data-item="item2">
             <div class="item-header">Item 2</div>
+            <!-- Since there are no sub-items for Item 2, make sure the div is present but empty -->
+            <div class="sub-items">
+            </div>
         </div>
         <!-- Add more items as needed -->
     </div>
     <div class="right-panel">
-        <div class="output"></div>
+        <div class="output">
+            <div class="cursor">&nbsp;</div>
+        </div>
         <div class="clear-toggle">
             <input type="checkbox" id="auto-clear">
             <label for="auto-clear">Auto Clear Output</label>

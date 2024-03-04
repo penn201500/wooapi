@@ -24,21 +24,11 @@ body {
     cursor: pointer;
 }
 
-.sub-items {
-    display: none;
-    padding-left: 20px;
-}
-
 .output {
     background-color: #f0f0f0;
     padding: 10px;
     height: calc(100% - 40px);
     overflow-y: auto;
-}
-
-.clear-toggle {
-    position: absolute;
-    bottom: 20px;
 }
 
 /* Theme Switch */
@@ -127,13 +117,6 @@ input:checked + .slider:before {
     background-color: #efefef;
 }
 
-/* Sub-item styles */
-.sub-items {
-    display: none; /* initially hidden */
-    padding-left: 20px;
-    padding-top: 10px;
-}
-
 /* When .dark-theme is applied, it will override the colors */
 .dark-theme .item {
     border: 1px solid #555;
@@ -141,5 +124,59 @@ input:checked + .slider:before {
 }
 
 .dark-theme .item:hover {
+    background-color: #777;
+}
+
+/* Cursor blink animation */
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.cursor {
+    border-left: 2px solid white;
+    animation: blink 1s steps(1) infinite;
+}
+
+.hint {
+    color: #999999;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+
+.dark-theme .hint {
+    color: lightgoldenrodyellow;
+}
+
+/* Ensure cursor color is white in dark theme */
+.dark-theme .cursor {
+    border-left: 2px solid white;
+}
+
+/* Ensure cursor color is black in light theme */
+.cursor {
+    border-left: 2px solid black;
+}
+
+/* Clear toggle checkbox position */
+.clear-toggle {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+/* Sub-item styles */
+.sub-item {
+    cursor: pointer;
+    padding: 5px 0;
+    transition: background-color 0.3s;
+}
+
+.sub-item:hover {
+    background-color: #efefef;
+}
+
+.dark-theme .sub-item:hover {
     background-color: #777;
 }
