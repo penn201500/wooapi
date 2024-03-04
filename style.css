@@ -109,14 +109,14 @@ input:checked + .slider:before {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #e9e9e9;
     cursor: pointer;
     transition: background-color 0.3s;
     flex: 1;
 }
 
-.item:hover {
-    background-color: #efefef;
+.item:hover .sub-item {
+    background-color: #d0d0d0;
 }
 
 /* When .dark-theme is applied, it will override the colors */
@@ -171,8 +171,11 @@ input:checked + .slider:before {
 /* Sub-item styles */
 .sub-item {
     cursor: pointer;
-    padding: 5px 0;
-    transition: background-color 0.3s;
+    padding-left: 20px;
+    border: 1px solid #ddd;
+    margin: 5px 0;
+    border-radius: 5px;
+    background-color: #e0e0e0;
 }
 
 .sub-items {
@@ -184,9 +187,27 @@ input:checked + .slider:before {
 }
 
 .sub-item:hover {
-    background-color: #efefef;
+    background-color: #d0d0d0;
+}
+
+.item-header {
+    font-weight: bold;
+    color: blue;
+    margin-bottom: 10px;
+}
+
+.sub-item:nth-child(odd) {
+    background-color: lightblue;
+}
+
+.sub-item:nth-child(even) {
+    background-color: lightgreen;
+}
+
+.item-header + .sub-items {
+    margin-top: 10px;
 }
 
 .dark-theme .sub-item:hover {
-    background-color: #777;
+    background-color: gray;
 }
