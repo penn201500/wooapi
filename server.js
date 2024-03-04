@@ -57,6 +57,23 @@ app.get("/getAccountInfo", async (req, res) => {
     }
 });
 
+
+app.get("/getAvailableSymbols", async (req, res) => {
+    const method = "GET";
+    const requestPath = "/v1/public/info";
+    const headerInfo = await getSignature(method, requestPath);
+
+    const url = `https://api.woo.org${requestPath}`; // Update the base URL as needed
+
+    try {
+        const response = await axios.get(url, { headers: headerInfo });
+        console.log("Data fetched successfully");
+        res.json(response.data);
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        res.status(500).json({ message: "Error fetching data" });
+    }
+});
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);
 });

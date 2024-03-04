@@ -26,4 +26,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 outputDiv.textContent = 'Error fetching data: ' + error;
             });
     });
+
+    // Click event for "Get Available Symbols" sub-item
+    document.getElementById('getAvailableSymbols').addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent triggering click event on the parent item
+        const outputDiv = document.querySelector('.right-panel .output');
+        outputDiv.textContent = 'Fetching data, please wait...';
+        fetch(`${API_SERVER}/getAvailableSymbols`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                const outputDiv = document.querySelector('.right-panel .output');
+                // Assuming the response is JSON and you want to display it as text
+                outputDiv.textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error('Error fetching account info:', error);
+                const outputDiv = document.querySelector('.right-panel .output');
+                outputDiv.textContent = 'Error fetching data: ' + error;
+            });
+    });
 });
