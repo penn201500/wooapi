@@ -4,6 +4,7 @@
 
 const API_SERVER_WSS = 'wss://wss.woo.org/ws/stream';
 let socket = null;
+let keepAliveIntervalId = null;
 
 function displayMessage(message, isFromServer) {
     const messagesContainer = document.getElementById('websocket-messages');
@@ -32,10 +33,12 @@ function initWebSocket(applicationId) {
         const pongMsg = JSON.stringify({event: 'pong'});
 
         // Send a pong message every 10 seconds to keep the connection alive
-        setInterval(() => {
-            console.log('Sending pong to keep the connection alive.');
-            displayMessage(pongMsg, false)
-            socket.send(pongMsg);
+        keepAliveIntervalId = setInterval(() => {
+            if (socket.readyState === WebSocket.OPEN) { // Check if the connection is open
+                console.log('Sending pong to keep the connection alive.');
+                displayMessage(pongMsg, false);
+                socket.send(pongMsg);
+            }
         }, 10000);
     };
 
@@ -59,13 +62,17 @@ function initWebSocket(applicationId) {
         console.log('WebSocket is closed now.');
         displayMessage('WebSocket connection closed.', false);
     };
+}
 
-
-    function stopWebSocket() {
-        if (socket) {
-            socket.close();
-            socket = null;
-        }
+function stopWebSocket() {
+    if (socket) {
+        socket.close();
+        socket = null;
+    }
+    // Clear the interval to stop sending the pong message
+    if (keepAliveIntervalId) {
+        clearInterval(keepAliveIntervalId);
+        keepAliveIntervalId = null;
     }
 }
 
