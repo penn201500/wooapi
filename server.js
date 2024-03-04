@@ -15,7 +15,9 @@ config({
 const app = express();
 const port = 63343;
 
-app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
 
 const apiKey = process.env.WOO_API_KEY;
 const apiSecret = process.env.WOO_API_SECRET;

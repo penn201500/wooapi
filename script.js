@@ -1,3 +1,4 @@
+const API_SERVER = 'http://localhost:63343';
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     themeToggle.addEventListener('change', function() {
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Click event for "Get Account Info" sub-item
     document.getElementById('getAccountInfo').addEventListener('click', function(event) {
         event.stopPropagation(); // Prevent triggering click event on the parent item
-        fetch('/getAccountInfo')
+        fetch(`${API_SERVER}/getAccountInfo`)
             .then(response => response.json())
             .then(data => {
                 console.log(data)
