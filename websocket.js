@@ -20,13 +20,14 @@ function initWebSocket(applicationId) {
         // Send a pong message every 10 seconds to keep the connection alive
         setInterval(() => {
             console.log('Sending pong to keep the connection alive.');
+            displayMessage(pongMsg, false)
             socket.send(pongMsg);
         }, 10000);
     };
 
     socket.onmessage = function (event) {
         console.log('Message from server:', event.data);
-        displayMessage(event.data)
+        displayMessage(event.data, true)
         const data = JSON.parse(event.data);
 
         // If the server requires a pong message, respond accordingly
