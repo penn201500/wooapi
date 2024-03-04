@@ -3,14 +3,28 @@
 // import WebSocket from "ws";
 
 const API_SERVER_WSS = 'wss://wss.woo.org/ws/stream';
+let socket = null;
+
+function displayMessage(message, isFromServer) {
+    const messagesContainer = document.getElementById('websocket-messages');
+    if (!messagesContainer) {
+        console.error('The #websocket-messages element is not found in the DOM.');
+        return;
+    }
+    const msgElement = document.createElement('div');
+    const prefix = isFromServer ? "Received: " : "Sent: ";
+    msgElement.textContent = prefix + message;
+    messagesContainer.appendChild(msgElement);
+}
 
 function initWebSocket(applicationId) {
     const wssUrl = `${API_SERVER_WSS}/${applicationId}`;
-    const socket = new WebSocket(wssUrl);
+    socket = new WebSocket(wssUrl);
     console.log('WebSocket URL:', wssUrl);
 
     socket.onopen = function (event) {
         console.log('WebSocket is connected.');
+        displayMessage('WebSocket connection established.', false);
 
         // The server will send a ping command to the client every 10 seconds.
         // If the pong from client is not received within 10 seconds for 10 consecutive times,
@@ -38,29 +52,44 @@ function initWebSocket(applicationId) {
 
     socket.onerror = function (error) {
         console.error('WebSocket Error:', error);
+        displayMessage('WebSocket error: ' + error.toString(), false);
     };
 
     socket.onclose = function (event) {
         console.log('WebSocket is closed now.');
+        displayMessage('WebSocket connection closed.', false);
     };
 
-    function displayMessage(message, isFromServer) {
-        const messagesContainer = document.getElementById('websocket-messages');
-        if (!messagesContainer) {
-            console.error('The #websocket-messages element is not found in the DOM.');
-            return;
-        }
-        const msgElement = document.createElement('div');
-        const prefix = isFromServer ? "Received: " : "Sent: ";
-        msgElement.textContent = prefix + message;
-        messagesContainer.appendChild(msgElement);
-    }
 
+    function stopWebSocket() {
+        if (socket) {
+            socket.close();
+            socket = null;
+        }
+    }
 }
 
-fetch('/config.json') // Adjust the path if your config.json is located elsewhere
-    .then(response => response.json())
-    .then(config => {
-        initWebSocket(config.WOO_API_APP_ID);
-    })
-    .catch(error => console.error('Error loading the configuration:', error));
+function toggleWebSocketConnection() {
+    if (socket) {
+        stopWebSocket();
+    } else {
+        fetch('/config.json') // Adjust the path if your config.json is located elsewhere
+            .then(response => response.json())
+            .then(config => {
+                initWebSocket(config.WOO_API_APP_ID);
+            })
+            .catch(error => console.error('Error loading the configuration:', error));
+    }
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const toggleItem = document.getElementById('send-message');
+    if (toggleItem) {
+        toggleItem.addEventListener('click', toggleWebSocketConnection);
+    } else {
+        console.error('Toggle button not found');
+    }
+});
+
+
+
