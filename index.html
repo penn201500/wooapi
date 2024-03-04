@@ -23,12 +23,15 @@
             </div>
         </div>
         <div class="item" data-item="websocket">
-            <div class="item-header">Websocket Interface</div>
-            <div class="sub-items"></div>
+            <div class="item-header">WebSocket Interface</div>
+            <div class="sub-items">
+                <div class="sub-item" id="send-message">Ping/Pong Message</div>
+            </div>
         </div>
     </div>
     <div class="right-panel">
         <div class="output">
+            <div id="websocket-messages" class="messages"></div>
             <div class="cursor">&nbsp;</div>
         </div>
         <div class="clear-toggle">
@@ -38,5 +41,6 @@
     </div>
 </div>
 <script src="script.js"></script>
+<script type="module" src="websocket.js"></script>
 </body>
 </html>
