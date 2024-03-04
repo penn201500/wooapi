@@ -175,6 +175,14 @@ input:checked + .slider:before {
     transition: background-color 0.3s;
 }
 
+.sub-items {
+    display: none;
+}
+
+.sub-items.show {
+    display: block;
+}
+
 .sub-item:hover {
     background-color: #efefef;
 }
