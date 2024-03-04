@@ -134,3 +134,4 @@ socket.onclose = function(event) {
 4. Open script.js, change the value of localhost to the server ip where you deployed your server.js
 `const API_SERVER = 'http://localhost:63343';`
 5. Open index.html, click items to test it.
+6. websocket.js will run local and just need `WOO_API_APPLICATION_ID`
