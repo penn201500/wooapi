@@ -4,6 +4,30 @@ Official link: https://vipdocs.woo.org/?python#general-information
 
 ## To display two implement forms of WOO API
 
+## Features
+- [x] Light/Dark Theme
+- [x] Toggle-able items; sub-items can be folded or displayed
+- [x] Scrollable output text area
+- [x] RESTful API and WebSocket Interfaces displayed
+
+## Screenshots
+
+Theme Switch
+![themeSwitch](https://easyimage.netmark.top/i/2024/03/05/153438.gif)
+
+Toggle-able items
+![toggleAbleItems](https://easyimage.netmark.top/i/2024/03/05/153440.gif)
+
+RESTful API Get Account Info
+![RESTful-GetAccountInfo](https://easyimage.netmark.top/i/2024/03/05/153432.gif)
+
+RESTful API Get Available Symbols
+![RESTful-GetAvailableSymbols](https://easyimage.netmark.top/i/2024/03/05/153429.gif)
+
+WebSocket PingPong Message
+![WebSocket-PingPongMessage](https://easyimage.netmark.top/i/2024/03/05/153426.gif)
+
+
 ### RESTful API
 
 Read https://vipdocs.woo.org/?python#authentication
